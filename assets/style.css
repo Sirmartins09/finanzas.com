@@ -1,0 +1,319 @@
+/* ---------- Variables (colores) ---------- */
+:root {
+  --bg: #eef2f1;
+  --card: #fff;
+  --ink: #12302c;
+  --mut: #5d7471;
+  --line: #d5dfdd;
+  --acc: #0f766e;
+  --bad: #b42318;
+}
+
+/* Modo oscuro automático según el sistema */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e1a18;
+    --card: #162623;
+    --ink: #e3efed;
+    --mut: #8fa8a4;
+    --line: #27403c;
+    --acc: #2dd4bf;
+    --bad: #f87171;
+  }
+}
+
+/* ---------- Base ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.5 "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 20px 16px 48px;
+}
+
+h1 {
+  font-size: 1.1rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 1rem;
+  margin: 0 0 12px;
+  font-weight: 600;
+}
+
+:focus-visible {
+  outline: 2px solid var(--acc);
+  outline-offset: 2px;
+}
+
+/* ---------- Formularios y botones ---------- */
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: 1px solid var(--line);
+  background: var(--card);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+button:hover {
+  border-color: var(--acc);
+}
+
+button.pri {
+  background: var(--acc);
+  border-color: var(--acc);
+  color: #fff;
+  font-weight: 600;
+}
+
+input,
+select {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--line);
+  background: var(--card);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--mut);
+  margin-bottom: 2px;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+form .full {
+  grid-column: 1 / -1;
+}
+
+.chk {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chk input {
+  width: auto;
+}
+
+.chk label {
+  margin: 0;
+}
+
+/* Campos extra del préstamo (JS lo muestra con display: grid) */
+.cuotas {
+  display: none;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+/* ---------- Cabecera y resumen ---------- */
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.month {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hero {
+  padding: 8px 0 20px;
+}
+
+.hero .big {
+  font-size: clamp(2.2rem, 9vw, 3.4rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.hero .sub {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 4px;
+  color: var(--mut);
+}
+
+.bar {
+  display: flex;
+  height: 14px;
+  border-radius: 7px;
+  overflow: hidden;
+  background: var(--line);
+  margin: 16px 0 10px;
+}
+
+.bar i {
+  display: block;
+  height: 100%;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  font-size: 0.88rem;
+  color: var(--mut);
+}
+
+.legend b {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  margin-right: 6px;
+}
+
+/* ---------- Tarjetas ---------- */
+section {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+/* ---------- Lista de gastos ---------- */
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+}
+
+li.row:first-child {
+  border-top: 0;
+}
+
+li.row input[type="checkbox"] {
+  width: auto;
+}
+
+li.row .t {
+  flex: 1;
+  min-width: 0;
+}
+
+li.row .t small {
+  display: block;
+  color: var(--mut);
+}
+
+li.row .a {
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+li.row.paid .t,
+li.row.paid .a {
+  opacity: 0.55;
+  text-decoration: line-through;
+}
+
+.x {
+  border: 0;
+  background: none;
+  color: var(--mut);
+  padding: 4px 8px;
+}
+
+.x:hover {
+  color: var(--bad);
+}
+
+.od {
+  color: var(--bad) !important;
+}
+
+.empty {
+  color: var(--mut);
+  padding: 8px 0;
+}
+
+/* ---------- Tabla mes a mes ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+td,
+th {
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+  text-align: right;
+}
+
+th {
+  font-weight: 500;
+  color: var(--mut);
+  border-top: 0;
+}
+
+td:first-child,
+th:first-child {
+  text-align: left;
+}
+
+tr.cur td {
+  font-weight: 600;
+  color: var(--acc);
+}
+
+/* ---------- Utilidades ---------- */
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.hint {
+  color: var(--mut);
+  font-size: 0.85rem;
+  margin-top: 10px;
+}

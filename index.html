@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mis gastos del mes</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<main>
+  <div class="top">
+    <h1>Mis gastos</h1>
+    <div class="month">
+      <button id="prev" aria-label="Mes anterior">‹</button>
+      <input type="month" id="mes" aria-label="Mes">
+      <button id="next" aria-label="Mes siguiente">›</button>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="big" id="total">$ 0</div>
+    <div class="sub"><span id="pagado"></span><span id="pend"></span></div>
+    <div class="bar" id="bar"></div>
+    <div class="legend" id="legend"></div>
+  </div>
+
+  <section>
+    <h2>Agregar gasto</h2>
+    <form id="f">
+      <div>
+        <label for="cat">Categoría</label>
+        <select id="cat"></select>
+      </div>
+      <div>
+        <label for="monto">Monto</label>
+        <input id="monto" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0" required>
+      </div>
+      <div class="full">
+        <label for="desc">Detalle (opcional)</label>
+        <input id="desc" type="text" placeholder="Ej: cuota 5 de 12">
+      </div>
+      <div class="chk">
+        <input id="pg" type="checkbox">
+        <label for="pg">Ya lo pagué</label>
+      </div>
+      <div class="chk">
+        <input id="esc" type="checkbox">
+        <label for="esc">Es un préstamo en cuotas</label>
+      </div>
+      <div id="cuo" class="full cuotas">
+        <div><label for="num">Cuota de este mes</label><input id="num" type="number" min="1" value="1"></div>
+        <div><label for="tot">Total de cuotas</label><input id="tot" type="number" min="1" value="12"></div>
+        <div><label for="dia">Día de vencimiento</label><input id="dia" type="number" min="1" max="31" value="10"></div>
+      </div>
+      <button class="pri full" type="submit">Agregar</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Gastos de <span id="mesTxt"></span></h2>
+    <ul id="lista"></ul>
+    <div class="tools"><button id="copiar">Copiar gastos del mes anterior</button></div>
+  </section>
+
+  <section>
+    <h2>Mes a mes (con cuotas proyectadas)</h2>
+    <table>
+      <thead><tr><th>Mes</th><th>Total</th><th>Pendiente</th></tr></thead>
+      <tbody id="hist"></tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Copia de seguridad</h2>
+    <div class="tools">
+      <button id="exp">Descargar copia</button>
+      <button id="imp">Cargar copia</button>
+      <input type="file" id="file" accept=".json" hidden>
+    </div>
+    <p class="hint">Los datos se guardan solo en este navegador. Descargá una copia de vez en cuando.</p>
+  </section>
+</main>
+
+<script src="js/main.js"></script>
+</body>
+</html>
